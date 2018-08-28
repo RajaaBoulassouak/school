@@ -32,3 +32,30 @@ describe 'user can see all students from student show page' do
     expect(current_path).to eq(students_path)
   end
 end
+
+describe 'user can create a new address for a student' do
+  it 'should create a new student adress' do
+    student = Student.create!(name: "Hans")
+    description = "Summer Address"
+    street = "Road"
+    city = "Denver" 
+    state = "CO" 
+    zip_code = 80202
+
+    visit new_student_address(student)
+    
+    fill_in "address[description]", with: description
+    fill_in "address[street]", with: street
+    fill_in "address[city]", with: city
+    fill_in "address[state]", with: state
+    fill_in "address[zip_code]", with: zip_code
+# 
+# describe 'user sees all adresses of the student' do 
+#   it 'should show all student adresses' do 
+#     student = Student.create!(name: "Hans")
+#     adress_1 = student.adresses.create!(description: "Summer Address", street: "Road", city: "Denver", state: "CO", zip_code: 80202)
+#     adress_2 = student.adresses.create!(description: "Winter Address", street: "Avenue", city: "Denver", state: "CO", zip_code: 80202)
+#   end
+# end 
+
+  
