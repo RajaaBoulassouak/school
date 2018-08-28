@@ -1,0 +1,8 @@
+<h1>Students</h1>
+<h3> <%= link_to "Add New Student", new_student_path %></h3>
+<% @students.each do |student| %>
+  <ul id="student-<%= student.id %>">
+    <li><%= link_to student.name, student_path(student) %> </li>
+    <li><%= link_to "Delete", student_path(student), method: :delete %></li>
+  </ul>
+<% end %>
