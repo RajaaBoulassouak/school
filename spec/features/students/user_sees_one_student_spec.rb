@@ -42,13 +42,23 @@ describe 'user can create a new address for a student' do
     state = "CO" 
     zip_code = 80202
 
-    visit new_student_address(student)
+    visit new_student_path(student)
     
     fill_in "address[description]", with: description
     fill_in "address[street]", with: street
     fill_in "address[city]", with: city
     fill_in "address[state]", with: state
     fill_in "address[zip_code]", with: zip_code
+    click_on "Create Address"
+    
+    expect(current_path).to eq(student_path(student))
+    expect(page).to have_content(address.description)
+    expect(page).to have_content(address.street)
+    expect(page).to have_content(address.city)
+    expect(page).to have_content(address.state)
+    expect(page).to have_content(address.zip_code)
+  end 
+end
 # 
 # describe 'user sees all adresses of the student' do 
 #   it 'should show all student adresses' do 
